@@ -11,7 +11,6 @@ import com.codecool.web.service.ShopService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleCouponService;
 import com.codecool.web.service.simple.SimpleShopService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

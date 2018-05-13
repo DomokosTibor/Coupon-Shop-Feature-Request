@@ -1,5 +1,6 @@
 package com.codecool.web.servlet;
 
+import com.codecool.web.model.User;
 import com.codecool.web.dao.CouponDao;
 import com.codecool.web.dao.ShopDao;
 import com.codecool.web.dao.database.DatabaseCouponDao;
@@ -8,7 +9,6 @@ import com.codecool.web.model.Coupon;
 import com.codecool.web.service.CouponService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleCouponService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +28,8 @@ public final class CouponsServlet extends AbstractServlet {
             ShopDao shopDao = new DatabaseShopDao(connection);
             CouponService couponService = new SimpleCouponService(couponDao, shopDao);
 
-            List<Coupon> coupons = couponService.getCoupons();
+            User user = (User) req.getSession().getAttribute("user");
+            List<Coupon> coupons = couponService.getCoupons(user.getId());
 
             req.setAttribute("coupons", coupons);
             req.getRequestDispatcher("coupons.jsp").forward(req, resp);
@@ -45,9 +46,10 @@ public final class CouponsServlet extends AbstractServlet {
             CouponService couponService = new SimpleCouponService(couponDao, shopDao);
 
             String name = req.getParameter("name");
+            String userID = req.getParameter("user_id");
             String percentage = req.getParameter("percentage");
 
-            Coupon coupon = couponService.addCoupon(name, percentage);
+            Coupon coupon = couponService.addCoupon(name, Integer.parseInt(userID), percentage);
 
             String info = String.format("Coupon %s with id %s has been created", coupon.getName(), coupon.getId());
             req.setAttribute("info", info);
