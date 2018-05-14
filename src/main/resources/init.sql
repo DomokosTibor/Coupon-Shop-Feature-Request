@@ -26,8 +26,8 @@ CREATE TABLE coupons (
 	user_id INT NOT NULL,
     percentage INTEGER NOT NULL,
     CONSTRAINT name_not_empty CHECK (name <> ''),
-	FOREIGN KEY (user_id) REFERENCES users(id)
-	CONSTRAINT percentage_between_bounds CHECK (percentage >= 0 AND percentage <= 100),
+	FOREIGN KEY (user_id) REFERENCES users(id),
+	CONSTRAINT percentage_between_bounds CHECK (percentage >= 0 AND percentage <= 100)
 );
 
 CREATE TABLE coupons_shops (

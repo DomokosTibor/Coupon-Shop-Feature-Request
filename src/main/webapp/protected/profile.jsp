@@ -12,7 +12,7 @@
 <p>Password: <c:out value="${user.password}"/></p>
 <h2>Own coupons</h2>
 <ul>
-<c:forEach var="coupon" items="${coupons}">
+<c:forEach var="coupon" items="${couponList}">
     <li>${coupon.name}</li>
 </c:forEach>
 </ul>

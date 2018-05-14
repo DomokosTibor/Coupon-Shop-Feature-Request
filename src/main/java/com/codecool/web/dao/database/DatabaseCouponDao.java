@@ -76,7 +76,7 @@ public final class DatabaseCouponDao extends AbstractDao implements CouponDao {
             executeInsert(statement);
             int id = fetchGeneratedId(statement);
             connection.commit();
-            return new Coupon(id, name, userID, percentage);
+            return new Coupon(id, name, percentage);
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
@@ -107,8 +107,8 @@ public final class DatabaseCouponDao extends AbstractDao implements CouponDao {
     private Coupon fetchCoupon(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
-        int userID = resultSet.getInt("user_id");
+//        int userID = resultSet.getInt("user_id");
         int percentage = resultSet.getInt("percentage");
-        return new Coupon(id, name, userID, percentage);
+        return new Coupon(id, name, percentage);
     }
 }

@@ -36,6 +36,8 @@ public final class ProfileServlet extends AbstractServlet {
 
             User user = (User) req.getSession().getAttribute("user");
             List<Coupon> couponList = couponService.getCoupons(user.getId());
+
+            req.setAttribute("couponList", couponList);
         }
         catch (SQLException ex) {
             throw new ServletException(ex);

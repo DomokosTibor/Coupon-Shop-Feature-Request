@@ -5,13 +5,13 @@ import java.util.Objects;
 public final class Coupon extends AbstractModel {
 
     private final String name;
-    private final int userID;
+//    private final int userID;
     private final int percentage;
 
-    public Coupon(int id, String name, int userID, int percentage) {
+    public Coupon(int id, String name, int percentage) {
         super(id);
         this.name = name;
-        this.userID = userID;
+//        this.userID = userID;
         this.percentage = percentage;
     }
 
@@ -19,9 +19,9 @@ public final class Coupon extends AbstractModel {
         return name;
     }
 
-    public int getUserID() {
-        return userID;
-    }
+//    public int getUserID() {
+//        return userID;
+//    }
 
     public int getPercentage() {
         return percentage;
